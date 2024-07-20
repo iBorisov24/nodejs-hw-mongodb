@@ -3,7 +3,7 @@ import pino from 'pino-http';
 import cors from 'cors';
 import { Contact } from './models/contacts.js';
 import { env } from './env.js';
-import { getAllContacts } from './services/contacts.js';
+import { getAllContacts, getCurrentContact } from './services/contacts.js';
 
 export const setupServer = () => {
   const app = express();
@@ -17,7 +17,7 @@ export const setupServer = () => {
     }),
   );
 
-  app.get('/contacts', async (reg, res) => {
+  app.get('/contacts', async (req, res) => {
     try {
       const contacts = await getAllContacts();
       res.status(200).json({
@@ -30,11 +30,26 @@ export const setupServer = () => {
       res.status(500).send('Internal Server Error');
     }
   });
+  app.get('/contacts/:contactId', async (req, res) => {
+    const { contactId } = req.params;
+    const contact = await getCurrentContact(contactId);
+
+    if (!contact) {
+      return res.status(404).send('Contact not found');
+    }
+
+    res.status(200).json({
+      status: 200,
+      message: `Successfully found contact with id ${contactId}!`,
+      data: contact,
+    });
+  });
   app.get('*', async (reg, res) => {
     res.status(404).send({
       message: 'Not found',
     });
   });
+
   const PORT = Number(env('PORT', '3000'));
 
   app.listen(PORT, () => {
