@@ -16,7 +16,11 @@ export const setupServer = () => {
       },
     }),
   );
-
+  app.get('/', (req, res) => {
+    res.json({
+      message: 'Hello World!',
+    });
+  });
   app.get('/contacts', async (req, res) => {
     try {
       const contacts = await getAllContacts();
