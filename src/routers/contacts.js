@@ -20,17 +20,20 @@ router.get(
   isValidId,
   ctrlWrapper(getContactsByIdController),
 );
+
 router.post(
   '/contacts',
   validateBody(createContactSchema),
   ctrlWrapper(createContactsController),
 );
+
 router.patch(
   '/contacts/:contactId',
   isValidId,
   validateBody(createContactSchema),
   ctrlWrapper(patchContactController),
 );
+
 router.delete('/contacts/:contactId', ctrlWrapper(deleteContactsController));
 
 export default router;

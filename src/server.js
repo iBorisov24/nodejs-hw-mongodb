@@ -2,14 +2,18 @@ import express from 'express';
 import pino from 'pino-http';
 import cors from 'cors';
 import contactsRouter from './routers/contacts.js';
+import authRouter from './routers/auth.js';
+import cookieParser from 'cookie-parser';
 import { env } from './env.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 
 export const setupServer = () => {
   const app = express();
+
   app.use(cors());
   app.use(express.json());
+  app.use(cookieParser());
   app.use(
     pino({
       transport: {
@@ -18,6 +22,7 @@ export const setupServer = () => {
     }),
   );
 
+  app.use(authRouter);
   app.use(contactsRouter);
 
   app.get('*', notFoundHandler);
