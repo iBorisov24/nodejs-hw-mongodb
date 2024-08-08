@@ -44,12 +44,19 @@ export const getContactsByIdController = async (req, res, next) => {
   });
 };
 export const createContactsController = async (req, res) => {
-  const contact = await createContact(req.body);
-
+  const contact = {
+    name: req.body.name,
+    phoneNumber: req.body.phoneNumber,
+    email: req.body.email,
+    isFavourite: req.body.isFavourite,
+    contactType: req.body.contactType,
+    userId: req.user._id,
+  };
+  const createdContact = await createContact(contact);
   res.status(201).json({
     status: 201,
     message: `Successfully created a contact!`,
-    data: contact,
+    data: createdContact,
   });
 };
 export const deleteContactsController = async (req, res, next) => {
