@@ -24,6 +24,10 @@ const contactSchema = mongoose.Schema(
       default: 'personal',
       enum: ['work', 'home', 'personal'],
     },
+    userId: {
+      type: String,
+      required: true,
+    },
   },
   {
     createdAt: {
@@ -34,4 +38,5 @@ const contactSchema = mongoose.Schema(
     },
   },
 );
+
 export const Contact = mongoose.model('Contact', contactSchema);
