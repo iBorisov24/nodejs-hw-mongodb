@@ -32,7 +32,7 @@ export const getAllContacts = async ({
 };
 
 export const getCurrentContact = async ({ id, userId }) => {
-  const contact = await Contact.findOne({ _id: userId, id });
+  const contact = await Contact.findOne(id);
   return contact;
 };
 

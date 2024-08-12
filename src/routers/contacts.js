@@ -22,7 +22,7 @@ router.get('/contacts', authenticate, ctrlWrapper(getContactsController));
 router.get(
   '/contacts/:contactId',
   authenticate,
-  isValidId,
+  // isValidId,
   ctrlWrapper(getContactsByIdController),
 );
 
