@@ -9,7 +9,7 @@ import { ONE_DAY } from '../constants/constants.js';
 export const registerUserController = async (req, res) => {
   const newUser = await registerUser(req.body);
 
-  res.send({
+  res.status(201).send({
     status: 201,
     message: 'Successfully registered a user!',
     data: newUser,

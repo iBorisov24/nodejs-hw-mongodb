@@ -14,7 +14,7 @@ export const registerUser = async (payload) => {
   }
 
   const hashedPassword = await bcrypt.hash(payload.password, 10);
-  console.log(hashedPassword);
+
   return await Users.create({ ...payload, password: hashedPassword });
 };
 
