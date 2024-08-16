@@ -28,6 +28,7 @@ const contactSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    photo: { type: String },
   },
   {
     createdAt: {
