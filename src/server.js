@@ -26,8 +26,7 @@ export const setupServer = () => {
   app.use(authRouter);
   app.use(contactsRouter);
 
-  app.get('*', notFoundHandler);
-
+  app.use('*', notFoundHandler);
   app.use(errorHandler);
 
   const PORT = Number(env('PORT', '3000'));
