@@ -60,6 +60,6 @@ export const updateContact = async (
       ...options,
     },
   );
-
-  return result;
+  console.log(result);
+  return result.value;
 };
