@@ -1,0 +1,54 @@
+type: object
+required:
+  - _id
+  - name
+  - phoneNumber
+  - contactType
+  - userId
+properties:
+  _id:
+    description: "Contact's id"
+    type: string
+    example: '65e4decds286b30065d53af9'
+  name:
+    description: "Contact's name"
+    type: string
+    example: 'Jana Doe'
+  phoneNumber:
+    description: "Contact's phone number"
+    type: number
+    example: 380685143245
+  email:
+    description: "Contact's email"
+    type: string
+    default: 'user@gmail.com'
+    example: 'borysovigor@example.com'
+  isFavourite:
+    description: 'Shows if the contact is marked as a favorite'
+    type: boolean
+    default: false
+    example: true
+  contactType:
+    description: "Contact's type"
+    type: string
+    enum: ['work', 'home', 'personal']
+    default: 'personal'
+    example: 'home'
+  userId:
+    description: 'Id of the user'
+    type: string
+    example: 60d21b4667d0d8992e610c88
+  photo:
+    description: "Link to the contact's photo"
+    type: string
+    example: htttp/cat.com
+  createdAt:
+    description: 'Time when the contact was added'
+    type: string
+    format: date-time
+    example: '2020-01-02T10:21:30Z'
+  updatedAt:
+    description: 'Time when the contact was last updated'
+    type: string
+    format: date-time
+    example: '2021-02-02T10:24:30Z'
