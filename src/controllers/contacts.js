@@ -89,7 +89,13 @@ export const deleteContactsController = async (req, res, next) => {
 export const patchContactController = async (req, res) => {
   const { contactId } = req.params;
 
-  const contact = req.body;
+  const contact = {
+    name: req.body.name,
+    phoneNumber: req.body.phoneNumber,
+    email: req.body.email,
+    isFavourite: req.body.isFavourite,
+    contactType: req.body.contactType,
+  };
 
   const result = await updateContact(
     { contactId, userId: req.user._id },
